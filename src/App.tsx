@@ -10,6 +10,12 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Community from "./pages/Community";
 import HowItWorks from "./pages/HowItWorks";
 import NotFound from "./pages/NotFound";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Login from "./pages/Login";
+import Notifications from "./pages/Notifications";
+import Profile from "./pages/Profile";
+import ServiceNew from "./pages/ServiceNew";
 
 const queryClient = new QueryClient();
 
@@ -22,9 +28,15 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/new" element={<ServiceNew />} />
           <Route path="/services/:id" element={<ServiceDetail />} />
           <Route path="/community" element={<Community />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/profile" element={<Profile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
