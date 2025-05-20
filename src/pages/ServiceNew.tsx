@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/layout/Header";
@@ -12,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/components/ui/use-toast";
-import { Loader2, Upload, Check, Info } from "lucide-react";
+import { Loader2, Upload, Check, Info, X } from "lucide-react";
 
 export default function ServiceNew() {
   const navigate = useNavigate();
