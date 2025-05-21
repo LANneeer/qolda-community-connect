@@ -7,21 +7,17 @@ export default function Footer() {
   const footerLinks = {
     Company: [
       { name: "About Us", href: "/about" },
-      { name: "Careers", href: "/careers" },
-      { name: "Community Impact", href: "/impact" },
       { name: "Contact", href: "/contact" },
     ],
     Platform: [
       { name: "How It Works", href: "/how-it-works" },
       { name: "Browse Services", href: "/services" },
       { name: "Offer Services", href: "/services/new" },
-      { name: "Community Guidelines", href: "/guidelines" },
     ],
     Support: [
-      { name: "Help Center", href: "/help" },
-      { name: "Safety", href: "/safety" },
-      { name: "Terms of Service", href: "/terms" },
-      { name: "Privacy Policy", href: "/privacy" },
+      { name: "Help Center", href: "/about" },
+      { name: "Terms of Service", href: "/about" },
+      { name: "Privacy Policy", href: "/about" },
     ],
   };
   
@@ -65,15 +61,9 @@ export default function Footer() {
             © {currentYear} Qolda. All rights reserved.
           </p>
           <div className="flex gap-6 mt-4 sm:mt-0">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Facebook
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Twitter
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Instagram
-            </a>
+            <span className="text-muted-foreground">
+              Follow Us
+            </span>
           </div>
         </div>
       </div>
