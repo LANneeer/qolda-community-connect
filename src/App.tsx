@@ -20,29 +20,28 @@ import ServiceNew from "./pages/ServiceNew";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/new" element={<ServiceNew />} />
-          <Route path="/services/:id" element={<ServiceDetail />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/profile" element={<Profile />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+	<QueryClientProvider client={queryClient}>
+		<TooltipProvider>
+			<Toaster />
+			<Sonner />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Index />} />
+					<Route path="/services" element={<Services />} />
+					<Route path="/services/new" element={<ServiceNew />} />
+					<Route path="/services/:id" element={<ServiceDetail />} />
+					<Route path="/community" element={<Community />} />
+					<Route path="/how-it-works" element={<HowItWorks />} />
+					<Route path="/about" element={<About />} />
+					<Route path="/contact" element={<Contact />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/notifications" element={<Notifications />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="*" element={<NotFound />} />
+				</Routes>
+			</BrowserRouter>
+		</TooltipProvider>
+	</QueryClientProvider>
 );
 
 export default App;
