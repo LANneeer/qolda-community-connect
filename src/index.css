@@ -33,7 +33,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 142 76% 36%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 142 76% 98%;
     --sidebar-foreground: 142 5.3% 26.1%;
@@ -96,7 +96,19 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-semibold;
+    @apply font-heading font-semibold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
   }
 }
 
@@ -104,4 +116,31 @@
   .text-balance {
     text-wrap: balance;
   }
+  
+  .shadow-card {
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-primary/80 to-accent-foreground bg-clip-text text-transparent;
+  }
+  
+  .hover-card {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
 }
