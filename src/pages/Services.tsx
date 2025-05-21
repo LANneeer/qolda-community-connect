@@ -75,16 +75,16 @@ export default function Services() {
       
       <main className="flex-1">
         {/* Page Header */}
-        <section className="bg-gradient-to-r from-secondary/40 to-secondary/10 py-10">
+        <section className="bg-muted py-8">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
               <div>
-                <h1 className="font-heading text-4xl font-bold mb-3">Browse Services</h1>
-                <p className="text-muted-foreground text-lg">
+                <h1 className="font-heading text-3xl font-bold mb-2">Browse Services</h1>
+                <p className="text-muted-foreground">
                   Discover services available in your community
                 </p>
               </div>
-              <Button asChild className="mt-6 md:mt-0 gap-2 shadow-lg shadow-primary/20 animate-fade-in">
+              <Button asChild className="mt-4 md:mt-0 gap-2">
                 <Link to="/services/new">
                   <Plus className="h-4 w-4" />
                   Offer a Service
@@ -95,21 +95,19 @@ export default function Services() {
         </section>
         
         {/* Services Content */}
-        <section className="py-12">
+        <section className="py-8">
           <div className="container px-4 md:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
               {/* Filters */}
               <div className="lg:col-span-1">
-                <div className="sticky top-24">
-                  <ServiceFilter onFilterChange={handleFilterChange} />
-                </div>
+                <ServiceFilter onFilterChange={handleFilterChange} />
               </div>
               
               {/* Services Grid */}
               <div className="lg:col-span-3">
                 {filteredServices.length > 0 ? (
                   <>
-                    <p className="text-muted-foreground mb-6">
+                    <p className="text-muted-foreground mb-4">
                       Showing {filteredServices.length} services
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -119,8 +117,8 @@ export default function Services() {
                     </div>
                   </>
                 ) : (
-                  <div className="text-center py-20 bg-muted/30 rounded-2xl border border-border/50">
-                    <h3 className="font-heading text-xl mb-3">No services found</h3>
+                  <div className="text-center py-12">
+                    <h3 className="font-heading text-xl mb-2">No services found</h3>
                     <p className="text-muted-foreground mb-6">
                       Try adjusting your filters or search criteria
                     </p>

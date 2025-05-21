@@ -16,10 +16,10 @@ export default function Header() {
   ];
 
   return (
-    <header className="border-b bg-background/95 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+    <header className="border-b bg-background sticky top-0 z-50">
       <div className="container flex items-center justify-between h-16 px-4 md:px-6">
         <Link to="/" className="flex items-center gap-2">
-          <div className="relative size-10 bg-primary rounded-xl flex items-center justify-center text-white font-heading font-bold text-2xl shadow-md shadow-primary/20">
+          <div className="relative size-10 bg-primary rounded-lg flex items-center justify-center text-white font-heading font-bold text-2xl">
             Q
           </div>
           <span className="font-heading font-semibold text-xl hidden sm:inline-block">
@@ -28,23 +28,23 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-8">
+        <nav className="hidden md:flex gap-6">
           {navItems.map((item) => (
             <Link
               key={item.name}
               to={item.href}
-              className="text-foreground/70 hover:text-primary transition-colors font-medium"
+              className="text-foreground/70 hover:text-foreground transition-colors font-medium"
             >
               {item.name}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Link to="/notifications" className="p-2 text-foreground/70 hover:text-primary transition-colors rounded-full hover:bg-secondary/50">
+        <div className="flex items-center gap-2">
+          <Link to="/notifications" className="p-2 text-foreground/70 hover:text-foreground rounded-full">
             <Bell className="size-5" />
           </Link>
-          <Link to="/profile" className="p-2 text-foreground/70 hover:text-primary transition-colors rounded-full hover:bg-secondary/50">
+          <Link to="/profile" className="p-2 text-foreground/70 hover:text-foreground rounded-full">
             <User className="size-5" />
           </Link>
           <Button asChild className="hidden md:flex">
@@ -67,7 +67,7 @@ export default function Header() {
                     className="flex items-center gap-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <div className="relative size-8 bg-primary rounded-xl flex items-center justify-center text-white font-heading font-bold text-xl">
+                    <div className="relative size-8 bg-primary rounded-lg flex items-center justify-center text-white font-heading font-bold text-xl">
                       Q
                     </div>
                     <span className="font-heading font-semibold text-lg">Qolda</span>
@@ -77,19 +77,19 @@ export default function Header() {
                     <span className="sr-only">Close menu</span>
                   </Button>
                 </div>
-                <nav className="flex flex-col gap-1 mt-6">
+                <nav className="flex flex-col gap-0.5 mt-4">
                   {navItems.map((item) => (
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="py-3 px-4 hover:bg-secondary rounded-lg transition-colors font-medium"
+                      className="py-2 px-4 hover:bg-muted rounded-md transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name}
                     </Link>
                   ))}
                 </nav>
-                <div className="mt-auto pt-6 border-t">
+                <div className="mt-auto pt-4 border-t">
                   <Button asChild className="w-full">
                     <Link 
                       to="/login"
