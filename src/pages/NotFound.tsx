@@ -2,8 +2,6 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 
 const NotFound = () => {
   const location = useLocation();
@@ -17,7 +15,6 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
       
       <main className="flex-1 flex items-center justify-center p-4">
         <div className="text-center max-w-md">
@@ -37,8 +34,6 @@ const NotFound = () => {
           </div>
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 };

@@ -1,7 +1,5 @@
 
 import { useState } from "react";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Bell, MessageCircle, Calendar, Heart, User, Clock, Check, X } from "lucide-react";
@@ -117,7 +115,6 @@ export default function Notifications() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
       
       <main className="flex-1 py-12">
         <div className="container px-4 md:px-6">
@@ -389,8 +386,7 @@ export default function Notifications() {
           </Tabs>
         </div>
       </main>
-      
-      <Footer />
+
     </div>
   );
 }

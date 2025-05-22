@@ -1,7 +1,4 @@
-
 import { useParams, Link } from "react-router-dom";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,7 +15,7 @@ export default function ServiceDetail() {
   if (!service) {
     return (
       <div className="min-h-screen flex flex-col">
-        <Header />
+
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <h1 className="font-heading text-2xl mb-4">Service Not Found</h1>
@@ -329,7 +326,6 @@ export default function ServiceDetail() {
         {/* Related Services (future enhancement) */}
       </main>
       
-      <Footer />
     </div>
   );
 }

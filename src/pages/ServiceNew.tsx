@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -101,7 +99,6 @@ export default function ServiceNew() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
       
       <main className="flex-1 py-12">
         <div className="container px-4 md:px-6">
@@ -402,8 +399,6 @@ export default function ServiceNew() {
           </div>
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 }

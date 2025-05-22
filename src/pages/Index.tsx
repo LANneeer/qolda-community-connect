@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import ServiceCard from "@/components/services/ServiceCard";
 import CategoryCard from "@/components/services/CategoryCard";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { categories, services, communityStats } from "@/data/mockData";
 import { Search, MapPin, ArrowRight, Users } from "lucide-react";
 
@@ -15,7 +13,7 @@ export default function Index() {
 
 	return (
 		<div className="min-h-screen flex flex-col">
-			<Header />
+			
 
 			<main className="flex-1">
 				{/* Hero Section */}
@@ -144,7 +142,7 @@ export default function Index() {
 				</section>
 			</main>
 
-			<Footer />
+			
 		</div>
 	);
 }

@@ -1,7 +1,5 @@
 
 import { useState, useEffect } from "react";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import ServiceCard from "@/components/services/ServiceCard";
 import ServiceFilter from "@/components/services/ServiceFilter";
 import { Button } from "@/components/ui/button";
@@ -71,7 +69,6 @@ export default function Services() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
       
       <main className="flex-1">
         {/* Page Header */}
@@ -133,7 +130,7 @@ export default function Services() {
         </section>
       </main>
       
-      <Footer />
+
     </div>
   );
 }

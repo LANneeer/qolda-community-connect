@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -93,7 +91,6 @@ export default function Login() {
 
 	return (
 		<div className="min-h-screen flex flex-col">
-			<Header />
 			<main className="flex-1 flex items-center justify-center py-12 px-4">
 				<div className="w-full max-w-md">
 					<Tabs defaultValue="login" className="w-full">
@@ -190,7 +187,6 @@ export default function Login() {
 					</Tabs>
 				</div>
 			</main>
-			<Footer />
 		</div>
 	);
 }

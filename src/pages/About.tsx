@@ -1,6 +1,3 @@
-
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { CalendarCheck, HandshakeIcon, Globe, HeartHandshake, Trophy, UsersRound } from "lucide-react";
 
 export default function About() {
