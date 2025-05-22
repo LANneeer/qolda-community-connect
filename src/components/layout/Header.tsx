@@ -42,9 +42,6 @@ export default function Header() {
 				</nav>
 
 				<div className="flex items-center gap-2">
-					<Link to="/notifications" className="p-2 text-foreground/70 hover:text-foreground rounded-full">
-						<Bell className="size-5" />
-					</Link>
 					<Link to="/profile" className="p-2 text-foreground/70 hover:text-foreground rounded-full">
 						<User className="size-5" />
 					</Link>

@@ -94,7 +94,7 @@ export default function Contact() {
 							))}
 						</div>
 
-						<div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+						<div className="grid grid-cols lg:grid-cols gap-12">
 							<div>
 								<h2 className="text-2xl font-heading font-semibold mb-6">Send Us a Message</h2>
 								<p className="text-muted-foreground mb-8">
@@ -167,53 +167,6 @@ export default function Contact() {
 								</form>
 							</div>
 
-							<div>
-								<h2 className="text-2xl font-heading font-semibold mb-6">Frequently Asked Questions</h2>
-
-								<div className="space-y-6">
-									<div>
-										<h3 className="text-lg font-medium mb-2">How do I sign up for Qolda?</h3>
-										<p className="text-muted-foreground">
-											You can sign up for Qolda by clicking the "Sign In" button in the top right corner of our website
-											and selecting "Create Account". The process takes just a few minutes.
-										</p>
-									</div>
-
-									<div>
-										<h3 className="text-lg font-medium mb-2">Is Qolda available in my area?</h3>
-										<p className="text-muted-foreground">
-											Qolda is currently available in select cities across the United States.
-											You can check availability in your area by entering your zip code on our homepage.
-										</p>
-									</div>
-
-									<div>
-										<h3 className="text-lg font-medium mb-2">How does service exchange work?</h3>
-										<p className="text-muted-foreground">
-											Qolda allows community members to offer and request services from each other.
-											Services can be exchanged for free, bartered, or for a fee, depending on what
-											the provider chooses. Visit our "How It Works" page for more details.
-										</p>
-									</div>
-
-									<div>
-										<h3 className="text-lg font-medium mb-2">Is there a mobile app?</h3>
-										<p className="text-muted-foreground">
-											Yes! Qolda is available as a mobile app for both iOS and Android devices.
-											You can download it from the App Store or Google Play Store.
-										</p>
-									</div>
-
-									<div>
-										<h3 className="text-lg font-medium mb-2">How do I become a service provider?</h3>
-										<p className="text-muted-foreground">
-											Any registered user can become a service provider by creating a service listing.
-											Simply log in to your account, click on "Offer a Service", and follow the prompts
-											to create your listing.
-										</p>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</section>

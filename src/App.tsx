@@ -12,7 +12,6 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
-import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import ServiceNew from "./pages/ServiceNew";
 
@@ -34,7 +33,6 @@ const App = () => (
 						<Route path="/about" element={<About />} />
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/login" element={<Login />} />
-						<Route path="/notifications" element={<Notifications />} />
 						<Route path="/profile" element={<Profile />} />
 						<Route path="*" element={<NotFound />} />
 					</Route>
