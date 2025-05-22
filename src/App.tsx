@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
-import Community from "./pages/Community";
 import HowItWorks from "./pages/HowItWorks";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
@@ -30,7 +29,6 @@ const App = () => (
 					<Route path="/services" element={<Services />} />
 					<Route path="/services/new" element={<ServiceNew />} />
 					<Route path="/services/:id" element={<ServiceDetail />} />
-					<Route path="/community" element={<Community />} />
 					<Route path="/how-it-works" element={<HowItWorks />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
