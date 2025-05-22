@@ -14,11 +14,6 @@ export default function Footer() {
 			{ name: "Browse Services", href: "/services" },
 			{ name: "Offer Services", href: "/services/new" },
 		],
-		Support: [
-			{ name: "Help Center", href: "/about" },
-			{ name: "Terms of Service", href: "/about" },
-			{ name: "Privacy Policy", href: "/about" },
-		],
 	};
 
 	return (

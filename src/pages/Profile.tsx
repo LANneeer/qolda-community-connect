@@ -29,7 +29,6 @@ export default function Profile() {
     memberSince: "January 2023",
     skills: ["Gardening", "Home Repair", "Tutoring", "Pet Care"],
     avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-    averageRating: 4.8,
     completedServices: 27,
     verifiedUser: true
   });
@@ -191,22 +190,7 @@ export default function Profile() {
                       <Calendar className="size-4 mr-1" />
                       <span>Member since {profile.memberSince}</span>
                     </div>
-                    
-                    <Separator className="my-4" />
-                    
-                    <div className="grid grid-cols-2 w-full gap-4 text-center">
-                      <div>
-                        <div className="flex items-center justify-center mb-1">
-                          <Star className="size-4 text-yellow-500 mr-1" />
-                          <span className="font-medium">{profile.averageRating}</span>
-                        </div>
-                        <p className="text-xs text-muted-foreground">Average Rating</p>
-                      </div>
-                      <div>
-                        <div className="font-medium mb-1">{profile.completedServices}</div>
-                        <p className="text-xs text-muted-foreground">Services Completed</p>
-                      </div>
-                    </div>
+                  
                     
                     <Separator className="my-4" />
                     
@@ -265,14 +249,6 @@ export default function Profile() {
                   <TabsTrigger value="services">
                     <PencilLine className="size-4 mr-2 md:mr-0 lg:mr-2" />
                     <span className="hidden md:inline-block">Services</span>
-                  </TabsTrigger>
-                  <TabsTrigger value="reviews">
-                    <Star className="size-4 mr-2 md:mr-0 lg:mr-2" />
-                    <span className="hidden md:inline-block">Reviews</span>
-                  </TabsTrigger>
-                  <TabsTrigger value="settings">
-                    <Cog className="size-4 mr-2 md:mr-0 lg:mr-2" />
-                    <span className="hidden md:inline-block">Settings</span>
                   </TabsTrigger>
                 </TabsList>
                 
@@ -478,9 +454,6 @@ export default function Profile() {
                                 </div>
                               </div>
                               <div className="flex flex-row md:flex-col gap-2 mt-4 md:mt-0">
-                                <Button asChild variant="outline" size="sm">
-                                  <a href={`/services/${service.id}/edit`}>Edit</a>
-                                </Button>
                                 {service.status === "active" ? (
                                   <Button 
                                     variant="outline" 
@@ -524,204 +497,6 @@ export default function Profile() {
                   )}
                 </TabsContent>
                 
-                {/* Reviews Tab */}
-                <TabsContent value="reviews" className="space-y-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Reviews & Feedback</CardTitle>
-                      <CardDescription>
-                        See what others are saying about your services
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="mb-6 bg-muted/30 p-4 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div className="text-center sm:text-left">
-                          <p className="text-sm text-muted-foreground mb-2">Average Rating</p>
-                          <div className="flex items-center">
-                            <span className="text-3xl font-bold mr-2">{profile.averageRating}</span>
-                            <div className="flex">
-                              {[...Array(5)].map((_, i) => (
-                                <Star 
-                                  key={i} 
-                                  className={`size-5 ${i < Math.floor(profile.averageRating) ? 'text-yellow-500 fill-yellow-500' : 'text-muted'}`} 
-                                />
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <p className="text-sm text-muted-foreground mb-2">Total Reviews</p>
-                          <p className="text-3xl font-bold">{reviews.length}</p>
-                        </div>
-                        <div className="text-center sm:text-right">
-                          <p className="text-sm text-muted-foreground mb-2">Services Completed</p>
-                          <p className="text-3xl font-bold">{profile.completedServices}</p>
-                        </div>
-                      </div>
-                      
-                      {reviews.length > 0 ? (
-                        <div className="space-y-6">
-                          {reviews.map((review) => (
-                            <div key={review.id} className="border-b pb-6 last:border-b-0">
-                              <div className="flex justify-between items-start mb-2">
-                                <h3 className="font-medium">{review.service}</h3>
-                                <div className="flex">
-                                  {[...Array(5)].map((_, i) => (
-                                    <Star 
-                                      key={i} 
-                                      className={`size-4 ${i < review.rating ? 'text-yellow-500 fill-yellow-500' : 'text-muted'}`} 
-                                    />
-                                  ))}
-                                </div>
-                              </div>
-                              <p className="text-sm mb-2">{review.comment}</p>
-                              <div className="flex justify-between text-sm text-muted-foreground">
-                                <span>{review.clientName}</span>
-                                <span>{review.date}</span>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="text-center py-6">
-                          <p className="text-muted-foreground">No reviews yet</p>
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                </TabsContent>
-                
-                {/* Settings Tab */}
-                <TabsContent value="settings" className="space-y-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Bell className="size-5 mr-2" />
-                        Notification Settings
-                      </CardTitle>
-                      <CardDescription>
-                        Control how you receive notifications and updates
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="font-medium">Message Notifications</h3>
-                          <p className="text-sm text-muted-foreground">
-                            Get notified when you receive messages from other users
-                          </p>
-                        </div>
-                        <Switch 
-                          checked={notifications.messages} 
-                          onCheckedChange={(checked) => handleNotificationChange("messages", checked)}
-                        />
-                      </div>
-                      <Separator />
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="font-medium">Booking Notifications</h3>
-                          <p className="text-sm text-muted-foreground">
-                            Get notified about new bookings and booking changes
-                          </p>
-                        </div>
-                        <Switch 
-                          checked={notifications.bookings} 
-                          onCheckedChange={(checked) => handleNotificationChange("bookings", checked)}
-                        />
-                      </div>
-                      <Separator />
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="font-medium">Service Updates</h3>
-                          <p className="text-sm text-muted-foreground">
-                            Get notified about views, inquiries, and other service activity
-                          </p>
-                        </div>
-                        <Switch 
-                          checked={notifications.serviceUpdates} 
-                          onCheckedChange={(checked) => handleNotificationChange("serviceUpdates", checked)}
-                        />
-                      </div>
-                      <Separator />
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="font-medium">Marketing & Promotions</h3>
-                          <p className="text-sm text-muted-foreground">
-                            Receive updates about Qolda features and community events
-                          </p>
-                        </div>
-                        <Switch 
-                          checked={notifications.marketing} 
-                          onCheckedChange={(checked) => handleNotificationChange("marketing", checked)}
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Shield className="size-5 mr-2" />
-                        Privacy & Security
-                      </CardTitle>
-                      <CardDescription>
-                        Manage your account security and privacy preferences
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div>
-                        <h3 className="font-medium mb-2">Change Password</h3>
-                        <p className="text-sm text-muted-foreground mb-4">
-                          It's a good idea to use a strong password that you don't use elsewhere
-                        </p>
-                        <Button variant="outline">Change Password</Button>
-                      </div>
-                      
-                      <Separator className="my-4" />
-                      
-                      <div>
-                        <h3 className="font-medium mb-2">Profile Visibility</h3>
-                        <p className="text-sm text-muted-foreground">
-                          Control who can see your profile and contact information
-                        </p>
-                        <div className="mt-4 space-y-2">
-                          <div className="flex items-center space-x-2">
-                            <Switch id="public-profile" checked />
-                            <Label htmlFor="public-profile">Public Profile</Label>
-                          </div>
-                          <p className="text-xs text-muted-foreground pl-7">
-                            Your profile is visible to all Qolda users
-                          </p>
-                        </div>
-                        <div className="mt-4 space-y-2">
-                          <div className="flex items-center space-x-2">
-                            <Switch id="show-location" checked />
-                            <Label htmlFor="show-location">Show Approximate Location</Label>
-                          </div>
-                          <p className="text-xs text-muted-foreground pl-7">
-                            Your neighborhood and city will be visible (but not your exact address)
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <Separator className="my-4" />
-                      
-                      <div>
-                        <h3 className="font-medium mb-2">Account Management</h3>
-                        <div className="space-y-4">
-                          <Button variant="outline" className="text-amber-600 border-amber-200">
-                            Deactivate Account
-                          </Button>
-                          <div className="pt-2">
-                            <Button variant="outline" className="text-destructive border-destructive/20">
-                              Delete Account
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
               </Tabs>
             </div>
           </div>

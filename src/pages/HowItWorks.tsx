@@ -21,53 +21,6 @@ export default function HowItWorks() {
           </div>
         </section>
         
-        {/* Core Process Steps */}
-        <section className="py-16">
-          <div className="container px-4 md:px-6">
-            <h2 className="font-heading text-3xl font-semibold text-center mb-12">
-              The Qolda Process
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="font-heading font-bold text-3xl text-primary">1</span>
-                </div>
-                <h3 className="font-heading text-xl font-medium mb-3">Join the Community</h3>
-                <p className="text-muted-foreground">
-                  Create your profile, list your skills, and specify the services you can offer to others in your community.
-                </p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="font-heading font-bold text-3xl text-primary">2</span>
-                </div>
-                <h3 className="font-heading text-xl font-medium mb-3">Connect & Communicate</h3>
-                <p className="text-muted-foreground">
-                  Browse available services or post what you need. Use our messaging system to discuss details with potential service providers.
-                </p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="font-heading font-bold text-3xl text-primary">3</span>
-                </div>
-                <h3 className="font-heading text-xl font-medium mb-3">Exchange Services</h3>
-                <p className="text-muted-foreground">
-                  Arrange to meet, exchange services, and build community connections. After completion, leave a review to help others.
-                </p>
-              </div>
-            </div>
-            
-            <div className="mt-12 text-center">
-              <Button size="lg" asChild>
-                <Link to="/register">Join Now</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-        
         {/* Exchange Types */}
         <section className="py-16 bg-muted/50">
           <div className="container px-4 md:px-6">
@@ -186,7 +139,7 @@ export default function HowItWorks() {
               
               <div className="relative">
                 <img 
-                  src="/placeholder.svg" 
+                  src="/images/1.jpg" 
                   alt="Trust and safety illustration" 
                   className="rounded-lg shadow-md w-full h-auto"
                 />
@@ -273,7 +226,7 @@ export default function HowItWorks() {
               <Button size="lg" asChild className="bg-white text-primary hover:bg-white/90">
                 <Link to="/register">Sign Up Now</Link>
               </Button>
-              <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" asChild className="bg-white text-primary hover:bg-white/90">
                 <Link to="/services">Browse Services</Link>
               </Button>
             </div>
