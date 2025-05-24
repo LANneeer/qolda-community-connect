@@ -48,35 +48,6 @@ export default function Index() {
 					<div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
 				</section>
 
-				{/* Search Section */}
-				<section className="py-12 relative z-10">
-					<div className="container px-4 md:px-6">
-						<Card className="mx-auto max-w-3xl -mt-16 shadow-lg relative z-20">
-							<CardContent className="p-6">
-								<div className="flex flex-col sm:flex-row gap-4">
-									<div className="relative flex-1">
-										<Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
-										<input
-											type="text"
-											placeholder="What service are you looking for?"
-											className="w-full h-12 pl-10 pr-4 rounded-lg border border-input bg-background"
-										/>
-									</div>
-									<div className="relative flex-1">
-										<MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
-										<input
-											type="text"
-											placeholder="Your neighborhood or zip code"
-											className="w-full h-12 pl-10 pr-4 rounded-lg border border-input bg-background"
-										/>
-									</div>
-									<Button className="h-12 px-6">Search</Button>
-								</div>
-							</CardContent>
-						</Card>
-					</div>
-				</section>
-
 				{/* Categories Section */}
 				<section className="py-12 bg-muted/50">
 					<div className="container px-4 md:px-6">

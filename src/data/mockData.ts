@@ -16,10 +16,19 @@ export const fetchServicesFromFirebase = async (): Promise<Service[]> => {
 			images: data.images || [],
 			categoryId: data.category || "unknown",
 			provider: {
+				id: data.createdBy?.uid || "anonymous",
 				name: data.createdBy?.email || "Anonymous",
 				avatar: "/placeholder.svg",
-				location: data.location || "Unknown",
-				rating: 5
+				bio: data.providerBio || "No bio available",
+				location: {
+					neighborhood: data.location?.neighborhood || "Unknown",
+					city: data.location?.city || "Unknown",
+					state: data.location?.state || "Unknown",
+					zipCode: data.location?.zipCode || "00000"
+				},
+				memberSince: data.createdAt?.toDate?.() || new Date(),
+				skills: data.skills || [],
+				ratings: data.ratings || []
 			},
 			location: data.location || "Unknown",
 			availability: data.availability || "",

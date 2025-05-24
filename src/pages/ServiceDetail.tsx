@@ -1,8 +1,9 @@
 import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { services, categories } from "@/data/mockData";
+import { services, categories, fetchServicesFromFirebase } from "@/data/mockData";
 import { Service } from "@/types";
 import { MapPin, Calendar, MessageSquare, Star, Share2, Flag, Heart } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -10,7 +11,16 @@ import { Separator } from "@/components/ui/separator";
 
 export default function ServiceDetail() {
 	const { id } = useParams();
-	const service = services.find((s) => s.id === id);
+
+  const [allServices, setAllServices] = useState<Service[]>([]);
+
+  const loadServices = async () => {
+    const fetched = await fetchServicesFromFirebase();
+    setAllServices(fetched);
+  };
+  loadServices();
+
+  const service = allServices.find((s) => s.id === id);
 
 	if (!service) {
 		return (
@@ -30,6 +40,7 @@ export default function ServiceDetail() {
 			</div>
 		);
 	}
+
 
 	const category = categories.find((c) => c.id === service.categoryId);
 
@@ -154,18 +165,6 @@ export default function ServiceDetail() {
 									</Card>
 								</div>
 
-								{/* Tags */}
-								<div className="mb-8">
-									<h3 className="font-medium mb-2">Tags</h3>
-									<div className="flex flex-wrap gap-2">
-										{service.tags.map((tag) => (
-											<Badge key={tag} variant="outline">
-												{tag}
-											</Badge>
-										))}
-									</div>
-								</div>
-
 								{/* Reviews */}
 								<div>
 									<h2 className="font-heading text-2xl font-semibold mb-4">Reviews</h2>
@@ -278,44 +277,6 @@ export default function ServiceDetail() {
 										</CardContent>
 									</Card>
 								)}
-
-								{/* Safety Tips */}
-								<Card>
-									<CardContent className="p-6">
-										<h3 className="font-heading font-medium text-lg mb-4">Safety Tips</h3>
-										<ul className="text-sm text-muted-foreground space-y-2">
-											<li className="flex gap-2">
-												<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-													<path d="m8 12 3 3 6-6" />
-												</svg>
-												<span>Meet in public places for initial discussions</span>
-											</li>
-											<li className="flex gap-2">
-												<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-													<path d="m8 12 3 3 6-6" />
-												</svg>
-												<span>Discuss expectations clearly before exchanging services</span>
-											</li>
-											<li className="flex gap-2">
-												<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-													<path d="m8 12 3 3 6-6" />
-												</svg>
-												<span>Use our messaging system to keep communication records</span>
-											</li>
-											<li className="flex gap-2">
-												<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-													<path d="m8 12 3 3 6-6" />
-												</svg>
-												<span>Report any concerns immediately</span>
-											</li>
-										</ul>
-
-										<Button variant="outline" className="w-full mt-4 gap-2" size="sm">
-											<Flag className="h-4 w-4" />
-											Report This Service
-										</Button>
-									</CardContent>
-								</Card>
 							</div>
 						</div>
 					</div>
