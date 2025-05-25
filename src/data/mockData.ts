@@ -102,31 +102,3 @@ export const serviceProviders: ServiceProvider[] = [
 ];
 
 
-export const communityStats = {
-	totalMembers: 1205,
-	activeServices: 348,
-	completedExchanges: 2741,
-	neighborhoodsServed: 17,
-	topCategories: [
-		{ name: "Home Maintenance", percentage: 28 },
-		{ name: "Education", percentage: 22 },
-		{ name: "Technology", percentage: 18 },
-		{ name: "Creative", percentage: 15 },
-		{ name: "Personal Care", percentage: 10 },
-		{ name: "Other", percentage: 7 }
-	],
-	exchangesByMonth: [
-		{ month: "Jan", exchanges: 178 },
-		{ month: "Feb", exchanges: 190 },
-		{ month: "Mar", exchanges: 221 },
-		{ month: "Apr", exchanges: 243 },
-		{ month: "May", exchanges: 257 },
-		{ month: "Jun", exchanges: 289 },
-		{ month: "Jul", exchanges: 305 },
-		{ month: "Aug", exchanges: 278 },
-		{ month: "Sep", exchanges: 260 },
-		{ month: "Oct", exchanges: 267 },
-		{ month: "Nov", exchanges: 240 },
-		{ month: "Dec", exchanges: 213 }
-	]
-};

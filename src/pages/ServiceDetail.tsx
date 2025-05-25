@@ -12,16 +12,15 @@ import { Separator } from "@/components/ui/separator";
 export default function ServiceDetail() {
 	const { id } = useParams();
 
-  const [allServices, setAllServices] = useState<Service[]>([]);
+	const [allServices, setAllServices] = useState<Service[]>([]);
 
-  const loadServices = async () => {
-    const fetched = await fetchServicesFromFirebase();
-    setAllServices(fetched);
-  };
-  loadServices();
+	const loadServices = async () => {
+		const fetched = await fetchServicesFromFirebase();
+		setAllServices(fetched);
+	};
+	loadServices();
 
-  const service = allServices.find((s) => s.id === id);
-
+	const service = allServices.find((s) => s.id === id);
 	if (!service) {
 		return (
 			<div className="min-h-screen flex flex-col">
@@ -99,16 +98,6 @@ export default function ServiceDetail() {
 								</span>
 							</div>
 
-							<div className="flex gap-4 mt-2">
-								<Button>Contact Provider</Button>
-								<Button variant="outline" className="gap-2">
-									<Heart className="h-4 w-4" />
-									Save
-								</Button>
-								<Button variant="ghost" size="icon">
-									<Share2 className="h-5 w-5" />
-								</Button>
-							</div>
 						</div>
 					</div>
 				</section>
@@ -165,31 +154,6 @@ export default function ServiceDetail() {
 									</Card>
 								</div>
 
-								{/* Reviews */}
-								<div>
-									<h2 className="font-heading text-2xl font-semibold mb-4">Reviews</h2>
-									{service.provider.ratings && service.provider.ratings.length > 0 ? (
-										<div className="space-y-6">
-											{service.provider.ratings.map((rating, index) => (
-												<div key={index} className="border-b pb-6 last:border-b-0 last:pb-0">
-													<div className="flex justify-between">
-														<div className="flex items-center gap-2 mb-2">
-															<div className="flex">
-																{renderStars(rating.rating)}
-															</div>
-															<span className="text-sm text-muted-foreground">
-																{formatDate(rating.createdAt)}
-															</span>
-														</div>
-													</div>
-													<p className="text-muted-foreground">{rating.comment}</p>
-												</div>
-											))}
-										</div>
-									) : (
-										<p className="text-muted-foreground">No reviews yet.</p>
-									)}
-								</div>
 							</div>
 
 							{/* Sidebar */}
@@ -210,12 +174,6 @@ export default function ServiceDetail() {
 													<span className="inline-block ml-1 bg-blue-500 text-white rounded-full size-4 text-xs flex items-center justify-center">✓</span>
 												)}
 											</h3>
-											<div className="flex justify-center items-center gap-1 mb-1">
-												{renderStars(averageRating)}
-												<span className="text-sm text-muted-foreground ml-1">
-													({service.provider.ratings.length})
-												</span>
-											</div>
 											<p className="text-sm text-muted-foreground">
 												Member since {formatDate(service.provider.memberSince)}
 											</p>

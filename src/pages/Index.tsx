@@ -13,7 +13,7 @@ export default function Index() {
 
 	return (
 		<div className="min-h-screen flex flex-col">
-			
+
 
 			<main className="flex-1">
 				{/* Hero Section */}
@@ -103,7 +103,7 @@ export default function Index() {
 						</p>
 						<div className="flex flex-wrap justify-center gap-4">
 							<Button size="lg" asChild className="bg-white text-primary hover:bg-white/90">
-								<Link to="/register">Sign Up Now</Link>
+								<Link to="/login">Sign Up Now</Link>
 							</Button>
 							<Button size="lg" variant="outline" asChild className="bg-white text-primary hover:bg-white/90">
 								<Link to="/services">Browse Services</Link>
@@ -113,7 +113,7 @@ export default function Index() {
 				</section>
 			</main>
 
-			
+
 		</div>
 	);
 }
