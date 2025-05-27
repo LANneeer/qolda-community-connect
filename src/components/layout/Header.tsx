@@ -1,18 +1,21 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X, User, Bell } from "lucide-react";
+import { Menu, User } from "lucide-react";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 export default function Header() {
+	const { t } = useTranslation();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const navItems = [
-		{ name: "Browse Services", href: "/services" },
-		{ name: "Offer a Service", href: "/services/new" },
-		{ name: "How It Works", href: "/how-it-works" },
-		{ name: "My chats", href: "/chats" },
+		{ name: t('nav.browseServices'), href: "/services" },
+		{ name: t('nav.offerService'), href: "/services/new" },
+		{ name: t('nav.howItWorks'), href: "/how-it-works" },
+		{ name: t('nav.myChats'), href: "/chats" },
 	];
 
 	return (
@@ -43,11 +46,12 @@ export default function Header() {
 				</nav>
 
 				<div className="flex items-center gap-2">
+					<LanguageSwitcher />
 					<Link to="/profile" className="p-2 text-foreground/70 hover:text-foreground rounded-full">
 						<User className="size-5" />
 					</Link>
 					<Button asChild className="hidden md:flex">
-						<Link to="/login">Sign In</Link>
+						<Link to="/login">{t('nav.signIn')}</Link>
 					</Button>
 
 					{/* Mobile menu button */}
@@ -93,7 +97,7 @@ export default function Header() {
 											to="/login"
 											onClick={() => setIsMenuOpen(false)}
 										>
-											Sign In
+											{t('nav.signIn')}
 										</Link>
 									</Button>
 								</div>

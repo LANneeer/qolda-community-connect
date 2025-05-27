@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +17,7 @@ import ChatPage from "./pages/ChatPage.tsx";
 import ChatListPage from "./pages/ChatList.tsx";
 import Profile from "./pages/Profile";
 import ServiceNew from "./pages/ServiceNew";
+import './i18n';
 
 const queryClient = new QueryClient();
 
