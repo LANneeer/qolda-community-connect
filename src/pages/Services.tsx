@@ -6,7 +6,7 @@ import { Service } from "@/types";
 import { Link, useSearchParams } from "react-router-dom";
 import { Plus } from "lucide-react";
 
-import { fetchServicesFromFirebase } from "@/data/mockData"; // ✅ получаем сервисы из Firestore
+import { fetchServicesFromFirebase } from "@/data/mockData";
 
 export default function Services() {
 	const [searchParams] = useSearchParams();
@@ -17,6 +17,21 @@ export default function Services() {
 		categories: [] as string[],
 		pricingType: [] as string[],
 	});
+
+	const [currentPage, setCurrentPage] = useState(1);
+	const servicesPerPage = 3;
+
+	const indexOfLast = currentPage * servicesPerPage;
+	const indexOfFirst = indexOfLast - servicesPerPage;
+	const paginatedServices = filteredServices.slice(indexOfFirst, indexOfLast);
+
+	const totalPages = Math.ceil(filteredServices.length / servicesPerPage);
+
+	const handlePageChange = (newPage: number) => {
+		if (newPage >= 1 && newPage <= totalPages) {
+			setCurrentPage(newPage);
+		}
+	};
 
 	useEffect(() => {
 		const loadServices = async () => {
@@ -38,12 +53,12 @@ export default function Services() {
 
 			const filtered = allServices.filter((service) => service.categoryId === categoryParam);
 			setFilteredServices(filtered);
+			setCurrentPage(1);
 		}
 	}, [searchParams, allServices]);
 
 	const handleFilterChange = (newFilters: any) => {
 		setFilters(newFilters);
-		console.log("FILTER DEBUG", newFilters.categories, allServices.map(s => s.categoryId));
 
 		let results = [...allServices];
 
@@ -66,6 +81,7 @@ export default function Services() {
 		}
 
 		setFilteredServices(results);
+		setCurrentPage(1); // Reset to first page
 	};
 
 	return (
@@ -104,9 +120,30 @@ export default function Services() {
 											Showing {filteredServices.length} services
 										</p>
 										<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-											{filteredServices.map((service) => (
+											{paginatedServices.map((service) => (
 												<ServiceCard key={service.id} service={service} />
 											))}
+										</div>
+
+										{/* Pagination Controls */}
+										<div className="flex justify-center mt-6 space-x-4">
+											<Button
+												variant="outline"
+												onClick={() => handlePageChange(currentPage - 1)}
+												disabled={currentPage === 1}
+											>
+												← Предыдущая
+											</Button>
+											<span className="self-center">
+												Страница {currentPage} из {totalPages}
+											</span>
+											<Button
+												variant="outline"
+												onClick={() => handlePageChange(currentPage + 1)}
+												disabled={currentPage === totalPages}
+											>
+												Следующая →
+											</Button>
 										</div>
 									</>
 								) : (

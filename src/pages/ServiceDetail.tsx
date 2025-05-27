@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,23 +8,43 @@ import { Service } from "@/types";
 import { MapPin, Calendar, MessageSquare, Star, Share2, Flag, Heart } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function ServiceDetail() {
 	const { id } = useParams();
-
 	const [allServices, setAllServices] = useState<Service[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
+	const { toast } = useToast();
 
-	const loadServices = async () => {
-		const fetched = await fetchServicesFromFirebase();
-		setAllServices(fetched);
-	};
-	loadServices();
+	useEffect(() => {
+		const loadServices = async () => {
+			setIsLoading(true);
+			try {
+				const fetched = await fetchServicesFromFirebase();
+				setAllServices(fetched);
+			} finally {
+				setIsLoading(false);
+			}
+		};
+		loadServices();
+	}, []);
 
 	const service = allServices.find((s) => s.id === id);
+
+	if (isLoading) {
+		return (
+			<div className="min-h-screen flex items-center justify-center">
+				<div className="text-center">
+					<div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-500 mx-auto mb-4" />
+					<p className="text-muted-foreground">Загрузка данных...</p>
+				</div>
+			</div>
+		);
+	}
+
 	if (!service) {
 		return (
 			<div className="min-h-screen flex flex-col">
-
 				<main className="flex-1 flex items-center justify-center">
 					<div className="text-center">
 						<h1 className="font-heading text-2xl mb-4">Service Not Found</h1>
@@ -202,7 +222,12 @@ export default function ServiceDetail() {
 										</div>
 
 										<div className="mt-6 space-y-2">
-											<Button className="w-full gap-2">
+											<Button className="w-full gap-2" onClick={() => {
+												toast({
+													title: `Message sent to ${service.provider.name.split(' ')[0]}`,
+													description: "This is a demo toast — real messaging coming soon!",
+												});
+											}}>
 												<MessageSquare className="h-4 w-4" />
 												Contact {service.provider.name.split(' ')[0]}
 											</Button>
