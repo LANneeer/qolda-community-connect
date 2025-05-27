@@ -4,12 +4,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-	apiKey: "AIzaSyBQrM_HYqEBDugfph7Kqxl6EMLEuUg0p50",
-	authDomain: "tennis-51e17.firebaseapp.com",
-	projectId: "tennis-51e17",
-	storageBucket: "tennis-51e17.firebasestorage.app",
-	messagingSenderId: "967579262668",
-	appId: "1:967579262668:web:2657d1f5b99f7b3c2eec69"
+	apiKey: "AIzaSyAvMBno53aMf98NU7-OsHBvBz-1W0piXIA",
+	authDomain: "qolda-828bb.firebaseapp.com",
+	projectId: "qolda-828bb",
+	storageBucket: "qolda-828bb.firebasestorage.app",
+	messagingSenderId: "79120898542",
+	appId: "1:79120898542:web:080fd18e0b1e36a3db56ff",
+	measurementId: "G-41LC9K057H"
 };
 
 const app = initializeApp(firebaseConfig);

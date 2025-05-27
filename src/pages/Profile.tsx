@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { auth, db } from "@/lib/firebase";
+import { auth, db, storage } from "@/lib/firebase";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+
 
 export default function Profile() {
 	const { toast } = useToast();
@@ -19,6 +21,7 @@ export default function Profile() {
 
 	const [phone, setPhone] = useState("");
 	const [bio, setBio] = useState("");
+	const [avatarFile, setAvatarFile] = useState<File | null>(null);
 	const [editMode, setEditMode] = useState(false);
 
 	const navigate = useNavigate();
@@ -42,6 +45,7 @@ export default function Profile() {
 						createdAt: new Date().toISOString(),
 						phone: "",
 						bio: "",
+						avatar: ""
 					};
 					await setDoc(ref, newProfile);
 					setProfile(newProfile);
@@ -68,7 +72,23 @@ export default function Profile() {
 	const handleSave = async () => {
 		if (!user) return;
 		const ref = doc(db, "users", user.uid);
-		await updateDoc(ref, { phone, bio });
+		let avatarUrl = profile.avatar || "";
+
+		if (avatarFile) {
+			const storagePath = `avatars/${user.uid}/${avatarFile.name}`;
+			const imageRef = storageRef(storage, storagePath);
+			await uploadBytes(imageRef, avatarFile);
+			avatarUrl = await getDownloadURL(imageRef);
+		}
+
+		await updateDoc(ref, {
+			phone,
+			bio,
+			avatar: avatarUrl
+		});
+
+		setProfile((prev: any) => ({ ...prev, avatar: avatarUrl }));
+		setAvatarFile(null);
 		toast({ title: "Profile updated" });
 		setEditMode(false);
 	};
@@ -123,6 +143,14 @@ export default function Profile() {
 							<div className="space-y-2">
 								<label className="text-sm font-medium">Bio</label>
 								<Textarea value={bio} onChange={(e) => setBio(e.target.value)} placeholder="Tell something about yourself" />
+							</div>
+							<div className="space-y-2">
+								<label className="text-sm font-medium">Profile Image</label>
+								<Input
+									type="file"
+									accept="image/*"
+									onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
+								/>
 							</div>
 							<div className="flex justify-between mt-4">
 								<Button variant="outline" onClick={handleLogout}>Logout</Button>

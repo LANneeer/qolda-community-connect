@@ -12,6 +12,7 @@ export default function Header() {
 		{ name: "Browse Services", href: "/services" },
 		{ name: "Offer a Service", href: "/services/new" },
 		{ name: "How It Works", href: "/how-it-works" },
+		{ name: "My chats", href: "/chats" },
 	];
 
 	return (

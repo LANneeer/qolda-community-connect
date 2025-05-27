@@ -12,6 +12,8 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import SignIn from "./pages/SignIn.tsx";
+import ChatPage from "./pages/ChatPage.tsx";
+import ChatListPage from "./pages/ChatList.tsx";
 import Profile from "./pages/Profile";
 import ServiceNew from "./pages/ServiceNew";
 
@@ -30,6 +32,8 @@ const App = () => (
 						<Route path="/services/new" element={<ServiceNew />} />
 						<Route path="/services/:id" element={<ServiceDetail />} />
 						<Route path="/how-it-works" element={<HowItWorks />} />
+						<Route path="/chat/:chatId" element={<ChatPage />} />
+						<Route path="/chats" element={<ChatListPage />} />
 						<Route path="/about" element={<About />} />
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/login" element={<SignIn />} />
