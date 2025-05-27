@@ -38,7 +38,7 @@ export default function ServiceDetail() {
 		);
 	}
 
-	const category = categories.find((c) => c.id === service.category);
+	const category = categories.find((c) => c.id === service.categoryId);
 
 	return (
 		<div className="min-h-screen flex flex-col">
@@ -48,15 +48,15 @@ export default function ServiceDetail() {
 					<div className="container px-4 md:px-6">
 						<div className="flex flex-col md:items-start gap-4">
 							<div className="flex flex-wrap gap-2 mb-2">
-								<Badge>{category?.name || service.category}</Badge>
+								<Badge>{category?.name || 'Technology'}</Badge>
 								<Badge variant="outline">
-									{service.price || 'Contact for pricing'}
+									{service.pricingDetails || 'Contact for pricing'}
 								</Badge>
 							</div>
 							<h1 className="font-heading text-3xl md:text-4xl font-bold">{service.title}</h1>
 							<div className="flex items-center text-muted-foreground">
 								<MapPin className="h-4 w-4 mr-1" />
-								<span>{service.location}</span>
+								<span>{service.location.neighborhood}, {service.location.city}</span>
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@ export default function ServiceDetail() {
 							<div className="lg:col-span-2">
 								<div className="rounded-lg overflow-hidden mb-8">
 									<img
-										src={service.image || "/placeholder.svg"}
+										src={service.images && service.images.length > 0 ? service.images[0] : "/placeholder.svg"}
 										alt={service.title}
 										className="w-full h-auto aspect-video object-cover"
 									/>
@@ -89,7 +89,7 @@ export default function ServiceDetail() {
 												<Calendar className="h-5 w-5 text-muted-foreground" />
 												<h3 className="font-medium">Availability</h3>
 											</div>
-											<p className="text-muted-foreground">Contact provider for availability</p>
+											<p className="text-muted-foreground">{service.availability}</p>
 										</CardContent>
 									</Card>
 
@@ -99,7 +99,7 @@ export default function ServiceDetail() {
 												<h3 className="font-medium">Service Area</h3>
 											</div>
 											<p className="text-muted-foreground">
-												{service.location} and surrounding areas
+												{service.location.neighborhood}, {service.location.city} and surrounding areas
 											</p>
 										</CardContent>
 									</Card>
@@ -114,25 +114,25 @@ export default function ServiceDetail() {
 										<div className="text-center mb-4">
 											<Avatar className="w-20 h-20 mx-auto mb-3">
 												<AvatarImage
-													src="/placeholder.svg"
-													alt={service.provider}
+													src={service.provider.avatar || "/placeholder.svg"}
+													alt={service.provider.name}
 												/>
 												<AvatarFallback>
-													{service.provider.split(' ').map(n => n[0]).join('')}
+													{service.provider.name.split(' ').map(n => n[0]).join('')}
 												</AvatarFallback>
 											</Avatar>
 											<h3 className="font-heading font-medium text-lg mb-1">
-												{service.provider}
+												{service.provider.name}
 											</h3>
 											<div className="flex items-center justify-center gap-1 mb-2">
 												{Array(5).fill(0).map((_, i) => (
 													<Star
 														key={i}
-														className={`h-4 w-4 ${i < service.rating ? 'text-amber-400 fill-amber-400' : 'text-gray-300'}`}
+														className={`h-4 w-4 ${i < (service.provider.averageRating || 0) ? 'text-amber-400 fill-amber-400' : 'text-gray-300'}`}
 													/>
 												))}
 												<span className="ml-1 text-sm text-muted-foreground">
-													{service.rating}
+													{service.provider.averageRating || 0}
 												</span>
 											</div>
 										</div>
@@ -148,7 +148,7 @@ export default function ServiceDetail() {
 												}}
 											>
 												<MessageSquare className="h-4 w-4" />
-												Contact {service.provider.split(" ")[0]}
+												Contact {service.provider.name.split(" ")[0]}
 											</Button>
 											<Button variant="outline" className="w-full">
 												View Profile
@@ -158,11 +158,11 @@ export default function ServiceDetail() {
 								</Card>
 
 								{/* Pricing */}
-								{service.price && (
+								{service.pricingDetails && (
 									<Card className="mb-6">
 										<CardContent className="p-6">
 											<h3 className="font-heading font-medium text-lg mb-4">Pricing</h3>
-											<p className="text-2xl font-bold text-primary mb-2">{service.price}</p>
+											<p className="text-2xl font-bold text-primary mb-2">{service.pricingDetails}</p>
 											<p className="text-sm text-muted-foreground">
 												Contact provider for detailed pricing information
 											</p>
