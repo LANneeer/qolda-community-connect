@@ -42,7 +42,7 @@ export async function getDocuments<T extends DocumentData>(
     return querySnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
-    })) as T[];
+    } as T));
   } catch (error) {
     console.error('Error getting documents:', error);
     throw error;
@@ -51,7 +51,7 @@ export async function getDocuments<T extends DocumentData>(
 
 export async function addDocument<T extends DocumentData>(
   collectionName: string,
-  data: T
+  data: Omit<T, 'id'>
 ): Promise<string> {
   try {
     const docRef = await addDoc(collection(db, collectionName), data);
@@ -65,11 +65,11 @@ export async function addDocument<T extends DocumentData>(
 export async function updateDocument<T extends DocumentData>(
   collectionName: string,
   docId: string,
-  data: Partial<T>
+  data: Partial<Omit<T, 'id'>>
 ): Promise<void> {
   try {
     const docRef = doc(db, collectionName, docId);
-    await updateDoc(docRef, data);
+    await updateDoc(docRef, data as any);
   } catch (error) {
     console.error('Error updating document:', error);
     throw error;

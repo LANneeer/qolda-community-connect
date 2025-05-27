@@ -128,6 +128,44 @@ export const mockServices: Service[] = [
     tags: ['garden', 'landscaping', 'design'],
     status: 'active',
     views: 89
+  },
+  {
+    id: '3',
+    title: 'Music Lessons',
+    description: 'Piano and guitar lessons for beginners and intermediate students',
+    images: [],
+    categoryId: '3',
+    provider: {
+      id: 'provider3',
+      name: 'Mike Johnson',
+      avatar: '/placeholder.svg',
+      bio: 'Professional musician and certified music teacher',
+      location: {
+        neighborhood: 'Brooklyn',
+        city: 'New York',
+        state: 'NY',
+        zipCode: '11201'
+      },
+      memberSince: new Date('2023-03-10'),
+      verificationBadge: true,
+      skills: ['Piano', 'Guitar', 'Music Theory'],
+      ratings: [],
+      averageRating: 4.7,
+      responseRate: 92
+    },
+    location: {
+      neighborhood: 'Brooklyn',
+      city: 'New York',
+      state: 'NY',
+      zipCode: '11201'
+    },
+    availability: 'Evenings and weekends',
+    pricingType: 'fee',
+    pricingDetails: '$40/hour',
+    createdAt: new Date('2024-03-05'),
+    tags: ['music', 'lessons', 'piano', 'guitar'],
+    status: 'active',
+    views: 156
   }
 ];
 
