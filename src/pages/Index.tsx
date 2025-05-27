@@ -1,33 +1,19 @@
-
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import ServiceCard from "@/components/services/ServiceCard";
 import CategoryCard from "@/components/services/CategoryCard";
-import { categories } from "@/data/mockData";
+import { categories, services, communityStats } from "@/data/mockData";
 import { Search, MapPin, ArrowRight, Users } from "lucide-react";
-import { RootState, AppDispatch } from "@/store";
-import { fetchServices } from "@/store/slices/servicesSlice";
-import { fetchCommunityStats } from "@/store/slices/communityStatsSlice";
 
 export default function Index() {
-	const { t } = useTranslation();
-	const dispatch = useDispatch<AppDispatch>();
-	const { items: services } = useSelector((state: RootState) => state.services);
-	
-	useEffect(() => {
-		dispatch(fetchServices());
-		dispatch(fetchCommunityStats());
-	}, [dispatch]);
-
 	const featuredServices = services.slice(0, 4);
 	const displayedCategories = categories.slice(0, 8);
 
 	return (
 		<div className="min-h-screen flex flex-col">
+
+
 			<main className="flex-1">
 				{/* Hero Section */}
 				<section className="relative bg-gradient-to-r from-primary to-primary/80 text-white py-16 md:py-24">
@@ -35,17 +21,17 @@ export default function Index() {
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 							<div className="space-y-6">
 								<h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-									{t('home.title')}
+									Exchange Services Within Your Community
 								</h1>
 								<p className="text-lg md:text-xl opacity-90 max-w-md">
-									{t('home.subtitle')}
+									Connect with neighbors, share skills, and build a stronger local community through service exchange.
 								</p>
 								<div className="flex flex-wrap gap-4">
 									<Button size="lg" asChild className="bg-white text-primary hover:bg-white/90">
-										<Link to="/services">{t('home.findServices')}</Link>
+										<Link to="/services">Find Services</Link>
 									</Button>
 									<Button size="lg" variant="outline" asChild className="border-white text-primary hover:bg-white/90">
-										<Link to="/services/new">{t('home.offerService')}</Link>
+										<Link to="/services/new">Offer a Service</Link>
 									</Button>
 								</div>
 							</div>
@@ -66,11 +52,11 @@ export default function Index() {
 					<div className="container px-4 md:px-6">
 						<div className="flex justify-between items-end mb-8">
 							<div>
-								<h2 className="font-heading text-3xl font-semibold">{t('home.serviceCategories')}</h2>
-								<p className="text-muted-foreground mt-2">{t('home.exploreCategoriesSubtitle')}</p>
+								<h2 className="font-heading text-3xl font-semibold">Service Categories</h2>
+								<p className="text-muted-foreground mt-2">Explore services by category</p>
 							</div>
 							<Link to="/services" className="flex items-center text-primary hover:underline">
-								{t('home.viewAll')}
+								View all
 								<ArrowRight className="ml-1 h-4 w-4" />
 							</Link>
 						</div>
@@ -88,11 +74,11 @@ export default function Index() {
 					<div className="container px-4 md:px-6">
 						<div className="flex justify-between items-end mb-8">
 							<div>
-								<h2 className="font-heading text-3xl font-semibold">{t('home.featuredServices')}</h2>
-								<p className="text-muted-foreground mt-2">{t('home.recentlyAddedSubtitle')}</p>
+								<h2 className="font-heading text-3xl font-semibold">Featured Services</h2>
+								<p className="text-muted-foreground mt-2">Recently added services in your area</p>
 							</div>
 							<Link to="/services" className="flex items-center text-primary hover:underline">
-								{t('home.viewAll')}
+								View all
 								<ArrowRight className="ml-1 h-4 w-4" />
 							</Link>
 						</div>
@@ -109,22 +95,24 @@ export default function Index() {
 				<section className="py-16 bg-primary text-white">
 					<div className="container px-4 md:px-6 text-center">
 						<h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-							{t('home.readyToConnect')}
+							Ready to Connect With Your Community?
 						</h2>
 						<p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto mb-8">
-							{t('home.joinToday')}
+							Join Qolda today and start exchanging services with your neighbors.
 						</p>
 						<div className="flex flex-wrap justify-center gap-4">
 							<Button size="lg" asChild className="bg-white text-primary hover:bg-white/90">
-								<Link to="/login">{t('home.signUpNow')}</Link>
+								<Link to="/login">Sign Up Now</Link>
 							</Button>
 							<Button size="lg" variant="outline" asChild className="bg-white text-primary hover:bg-white/90">
-								<Link to="/services">{t('home.browseServices')}</Link>
+								<Link to="/services">Browse Services</Link>
 							</Button>
 						</div>
 					</div>
 				</section>
 			</main>
+
+
 		</div>
 	);
 }

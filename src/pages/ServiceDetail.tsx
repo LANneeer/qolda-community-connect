@@ -20,8 +20,8 @@ export default function ServiceDetail() {
 	const { t } = useTranslation();
 	const { toast } = useToast();
 	const navigate = useNavigate();
-	const dispatch = useDispatch<AppDispatch>();
-	
+	const dispatch = useDispatch < AppDispatch > ();
+
 	const { items: services, status } = useSelector((state: RootState) => state.services);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -36,7 +36,7 @@ export default function ServiceDetail() {
 	if (status === 'loading') {
 		return (
 			<div className="min-h-screen flex items-center justify-center">
-				<p className="text-muted-foreground">{t('common.loading')}</p>
+				<p className="text-muted-foreground">{t('loading')}</p>
 			</div>
 		);
 	}
