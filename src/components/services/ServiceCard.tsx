@@ -20,8 +20,9 @@ export default function ServiceCard({ service }: ServiceCardProps) {
       : "/placeholder.svg";
   };
 
-  const formatDate = (date: Date | string) => {
+  const formatDate = (date: Date | string | undefined) => {
     try {
+      if (!date) return 'Recently';
       const dateObj = typeof date === 'string' ? new Date(date) : date;
       if (isNaN(dateObj.getTime())) {
         return 'Recently';
@@ -61,16 +62,16 @@ export default function ServiceCard({ service }: ServiceCardProps) {
     }
   };
 
-  // Safety checks for provider
-  const provider = service.provider || {};
-  const providerName = provider.name || 'Unknown Provider';
-  const providerAvatar = provider.avatar || "/placeholder.svg";
-  const hasVerificationBadge = provider.verificationBadge || false;
+  // Safety checks for provider with proper typing
+  const provider = service.provider || {} as any;
+  const providerName = provider?.name || 'Unknown Provider';
+  const providerAvatar = provider?.avatar || "/placeholder.svg";
+  const hasVerificationBadge = provider?.verificationBadge || false;
 
-  // Safety checks for location
-  const location = service.location || {};
-  const neighborhood = location.neighborhood || 'Unknown';
-  const city = location.city || 'Unknown';
+  // Safety checks for location with proper typing
+  const location = service.location || {} as any;
+  const neighborhood = location?.neighborhood || 'Unknown';
+  const city = location?.city || 'Unknown';
 
   return (
     <Card className="h-full overflow-hidden hover:shadow-md transition-shadow">

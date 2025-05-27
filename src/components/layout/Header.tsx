@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, User } from "lucide-react";
 import LanguageSwitcher from "../LanguageSwitcher";
+import { ThemeToggle } from "../ThemeToggle";
 
 export default function Header() {
 	const { t } = useTranslation();
@@ -16,6 +17,7 @@ export default function Header() {
 		{ name: t('nav.offerService'), href: "/services/new" },
 		{ name: t('nav.howItWorks'), href: "/how-it-works" },
 		{ name: t('nav.myChats'), href: "/chats" },
+		{ name: t('nav.admin'), href: "/admin" },
 	];
 
 	return (
@@ -47,6 +49,7 @@ export default function Header() {
 
 				<div className="flex items-center gap-2">
 					<LanguageSwitcher />
+					<ThemeToggle />
 					<Link to="/profile" className="p-2 text-foreground/70 hover:text-foreground rounded-full">
 						<User className="size-5" />
 					</Link>
