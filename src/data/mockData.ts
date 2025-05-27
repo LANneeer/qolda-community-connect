@@ -49,6 +49,9 @@ export const mockServices: Service[] = [
   }
 ];
 
+// Export services for backward compatibility
+export const services = mockServices;
+
 export interface Category {
   id: string;
   name: string;
@@ -80,3 +83,10 @@ export const categories: Category[] = [
     serviceCount: 38
   }
 ];
+
+// Mock function to simulate Firebase fetching
+export const fetchServicesFromFirebase = async () => {
+  // Simulate network delay
+  await new Promise(resolve => setTimeout(resolve, 500));
+  return mockServices;
+};

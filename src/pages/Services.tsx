@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import ServiceCard from "@/components/services/ServiceCard";
 import ServiceFilter from "@/components/services/ServiceFilter";
@@ -6,7 +7,7 @@ import { Service } from "@/types";
 import { Link, useSearchParams } from "react-router-dom";
 import { Plus } from "lucide-react";
 
-import { fetchServicesFromFirebase } from "@/data/mockData";
+import { mockServices } from "@/data/mockData";
 
 export default function Services() {
 	const [searchParams] = useSearchParams();
@@ -35,9 +36,9 @@ export default function Services() {
 
 	useEffect(() => {
 		const loadServices = async () => {
-			const fetched = await fetchServicesFromFirebase();
-			setAllServices(fetched);
-			setFilteredServices(fetched);
+			// Use mock services for now
+			setAllServices(mockServices as any);
+			setFilteredServices(mockServices as any);
 		};
 		loadServices();
 	}, []);
@@ -51,7 +52,7 @@ export default function Services() {
 				categories: [categoryParam],
 			}));
 
-			const filtered = allServices.filter((service) => service.categoryId === categoryParam);
+			const filtered = allServices.filter((service: any) => service.category === categoryParam);
 			setFilteredServices(filtered);
 			setCurrentPage(1);
 		}
@@ -65,19 +66,14 @@ export default function Services() {
 		if (newFilters.searchTerm) {
 			const searchLower = newFilters.searchTerm.toLowerCase();
 			results = results.filter(
-				(service) =>
+				(service: any) =>
 					service.title.toLowerCase().includes(searchLower) ||
-					service.description.toLowerCase().includes(searchLower) ||
-					(service.tags && service.tags.some((tag) => tag.toLowerCase().includes(searchLower)))
+					service.description.toLowerCase().includes(searchLower)
 			);
 		}
 
 		if (newFilters.categories?.length > 0) {
-			results = results.filter((service) => newFilters.categories.includes(service.categoryId));
-		}
-
-		if (newFilters.pricingType?.length > 0) {
-			results = results.filter((service) => newFilters.pricingType.includes(service.pricingType));
+			results = results.filter((service: any) => newFilters.categories.includes(service.category));
 		}
 
 		setFilteredServices(results);
@@ -132,17 +128,17 @@ export default function Services() {
 												onClick={() => handlePageChange(currentPage - 1)}
 												disabled={currentPage === 1}
 											>
-												← Предыдущая
+												← Previous
 											</Button>
 											<span className="self-center">
-												Страница {currentPage} из {totalPages}
+												Page {currentPage} of {totalPages}
 											</span>
 											<Button
 												variant="outline"
 												onClick={() => handlePageChange(currentPage + 1)}
 												disabled={currentPage === totalPages}
 											>
-												Следующая →
+												Next →
 											</Button>
 										</div>
 									</>
