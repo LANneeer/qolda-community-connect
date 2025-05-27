@@ -1,24 +1,45 @@
 
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { services, categories } from "@/data/mockData";
+import { categories } from "@/data/mockData";
 import { Service } from "@/types";
 import { MapPin, Calendar, MessageSquare, Star } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
+import { RootState, AppDispatch } from "@/store";
+import { fetchServices } from "@/store/slices/servicesSlice";
 
 export default function ServiceDetail() {
 	const { id } = useParams();
+	const { t } = useTranslation();
 	const { toast } = useToast();
 	const navigate = useNavigate();
-
+	const dispatch = useDispatch<AppDispatch>();
+	
+	const { items: services, status } = useSelector((state: RootState) => state.services);
 	const [isLoading, setIsLoading] = useState(false);
 
+	useEffect(() => {
+		if (services.length === 0) {
+			dispatch(fetchServices());
+		}
+	}, [dispatch, services.length]);
+
 	const service = services.find((s) => s.id === id);
+
+	if (status === 'loading') {
+		return (
+			<div className="min-h-screen flex items-center justify-center">
+				<p className="text-muted-foreground">{t('common.loading')}</p>
+			</div>
+		);
+	}
 
 	if (!service) {
 		return (

@@ -27,7 +27,7 @@
     "browseServices": "Browse Services",
     "discoverServices": "Discover services available in your community",
     "offerService": "Offer a Service",
-    "showingServices": "Showing {count} services",
+    "showingServices": "Showing {{count}} services",
     "noServicesFound": "No services found",
     "tryAdjustingFilters": "Try adjusting your filters or search criteria",
     "clearAllFilters": "Clear All Filters",
@@ -95,7 +95,6 @@
     "howCanWeHelp": "How can we help?",
     "tellUsMore": "Tell us more about your inquiry...",
     "sending": "Sending...",
-    "sendMessage": "Send Message",
     "messageSent": "Message sent!",
     "getBackSoon": "We'll get back to you as soon as possible."
   },

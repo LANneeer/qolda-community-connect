@@ -1,6 +1,8 @@
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { Service } from '@/types';
-import { fetchServicesFromFirebase } from '@/data/mockData';
+import { getDocuments } from '@/lib/firestore';
+import { mockServices } from '@/data/mockData';
 
 interface ServicesState {
   items: Service[];
@@ -17,8 +19,21 @@ const initialState: ServicesState = {
 export const fetchServices = createAsyncThunk(
   'services/fetchServices',
   async () => {
-    const response = await fetchServicesFromFirebase();
-    return response;
+    try {
+      console.log('Fetching services from Firebase...');
+      const firebaseServices = await getDocuments<Service>('services');
+      
+      if (firebaseServices.length > 0) {
+        console.log('Found Firebase services:', firebaseServices.length);
+        return firebaseServices;
+      } else {
+        console.log('No Firebase services found, using mock data');
+        return mockServices;
+      }
+    } catch (error) {
+      console.log('Firebase error, falling back to mock data:', error);
+      return mockServices;
+    }
   }
 );
 
@@ -56,4 +71,4 @@ const servicesSlice = createSlice({
 });
 
 export const { addService, updateService, removeService } = servicesSlice.actions;
-export default servicesSlice.reducer; 
+export default servicesSlice.reducer;

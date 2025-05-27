@@ -1,4 +1,6 @@
 
+import { Provider } from "react-redux";
+import { store } from "@/store";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,30 +24,32 @@ import './i18n';
 const queryClient = new QueryClient();
 
 const App = () => (
-	<QueryClientProvider client={queryClient}>
-		<TooltipProvider>
-			<Toaster />
-			<Sonner />
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<Layout />}>
-						<Route index element={<Index />} />
-						<Route path="/services" element={<Services />} />
-						<Route path="/services/new" element={<ServiceNew />} />
-						<Route path="/services/:id" element={<ServiceDetail />} />
-						<Route path="/how-it-works" element={<HowItWorks />} />
-						<Route path="/chat/:chatId" element={<ChatPage />} />
-						<Route path="/chats" element={<ChatListPage />} />
-						<Route path="/about" element={<About />} />
-						<Route path="/contact" element={<Contact />} />
-						<Route path="/login" element={<SignIn />} />
-						<Route path="/profile" element={<Profile />} />
-						<Route path="*" element={<NotFound />} />
-					</Route>
-				</Routes>
-			</BrowserRouter>
-		</TooltipProvider>
-	</QueryClientProvider>
+	<Provider store={store}>
+		<QueryClientProvider client={queryClient}>
+			<TooltipProvider>
+				<Toaster />
+				<Sonner />
+				<BrowserRouter>
+					<Routes>
+						<Route path="/" element={<Layout />}>
+							<Route index element={<Index />} />
+							<Route path="/services" element={<Services />} />
+							<Route path="/services/new" element={<ServiceNew />} />
+							<Route path="/services/:id" element={<ServiceDetail />} />
+							<Route path="/how-it-works" element={<HowItWorks />} />
+							<Route path="/chat/:chatId" element={<ChatPage />} />
+							<Route path="/chats" element={<ChatListPage />} />
+							<Route path="/about" element={<About />} />
+							<Route path="/contact" element={<Contact />} />
+							<Route path="/login" element={<SignIn />} />
+							<Route path="/profile" element={<Profile />} />
+							<Route path="*" element={<NotFound />} />
+						</Route>
+					</Routes>
+				</BrowserRouter>
+			</TooltipProvider>
+		</QueryClientProvider>
+	</Provider>
 );
 
 export default App;

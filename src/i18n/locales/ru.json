@@ -27,7 +27,7 @@
     "browseServices": "Поиск услуг",
     "discoverServices": "Найдите услуги, доступные в вашем сообществе",
     "offerService": "Предложить услугу",
-    "showingServices": "Показано услуг: {count}",
+    "showingServices": "Показано услуг: {{count}}",
     "noServicesFound": "Услуги не найдены",
     "tryAdjustingFilters": "Попробуйте изменить фильтры или критерии поиска",
     "clearAllFilters": "Очистить все фильтры",
@@ -95,7 +95,6 @@
     "howCanWeHelp": "Как мы можем помочь?",
     "tellUsMore": "Расскажите больше о вашем запросе...",
     "sending": "Отправка...",
-    "sendMessage": "Отправить сообщение",
     "messageSent": "Сообщение отправлено!",
     "getBackSoon": "Мы свяжемся с вами как можно скорее."
   },

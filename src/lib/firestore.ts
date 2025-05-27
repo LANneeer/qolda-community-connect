@@ -1,3 +1,4 @@
+
 import { 
   collection,
   doc,
@@ -15,7 +16,7 @@ import {
 } from 'firebase/firestore';
 import { db } from './firebase';
 
-export async function getDocument<T>(collectionName: string, docId: string): Promise<T | null> {
+export async function getDocument<T extends DocumentData>(collectionName: string, docId: string): Promise<T | null> {
   try {
     const docRef = doc(db, collectionName, docId);
     const docSnap = await getDoc(docRef);
@@ -30,7 +31,7 @@ export async function getDocument<T>(collectionName: string, docId: string): Pro
   }
 }
 
-export async function getDocuments<T>(
+export async function getDocuments<T extends DocumentData>(
   collectionName: string,
   constraints: QueryConstraint[] = []
 ): Promise<T[]> {
@@ -91,4 +92,4 @@ export async function deleteDocument(
 // Helper functions for common queries
 export const whereQuery = where;
 export const orderByQuery = orderBy;
-export const limitQuery = limit; 
+export const limitQuery = limit;
